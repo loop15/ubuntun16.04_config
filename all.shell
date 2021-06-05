@@ -1,0 +1,7 @@
+#! /bin/bash
+apt update
+sudo apt-get install openssh-client openssh-server git  silversearcher-ag  fim  samba-client repo dos2unix astyle
+
+sudo /etc/init.d/ssh start
+echo "启动ssh"
+ifconfig -a

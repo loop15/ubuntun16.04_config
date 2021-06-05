@@ -1,0 +1,37 @@
+#! /bin/bash
+samba_username=cw
+samba_password=cw
+samba_share_dir=/
+
+sudo cp /etc/samba/smb.conf.bak /etc/samba/smb.conf
+
+sudo apt-get install samba samba-common <<EOF
+y
+EOF
+
+sudo smbpasswd -a ${samba_username} <<EOF
+${samba_password} <<EOF
+${samba_password} <<EOF
+EOF
+
+sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+
+sudo chmod 777 ${samba_share_dir}
+
+sudo cat << EOF >> /etc/samba/smb.conf
+[linux_share]
+	comment = vk's share extdisk1
+	path = ${samba_share_dir}
+	guest ok = no
+	writable = yes
+	browseable = yes
+	create mask = 0755
+	directory mask = 0755
+	valid users = ${samba_username}
+EOF
+
+sudo service smbd restart
+echo "smaba install ok"
+
+
+
