@@ -1,0 +1,23 @@
+#! /bin/bash
+git_file=~/.gitconfig
+cat /dev/null > ${git_file}
+echo "
+[user]
+        email = wei.chen@qq.com
+        name = wei.chen
+[color]
+        ui = true
+[core]
+        editor = vim
+[alias]
+       branches = branch -a
+       remotes = remote -v
+       s = status
+       ll = log --pretty=oneline  -15
+       b  = branch -a -vv
+       d  = diff
+       c  = checkout
+       lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)%s%Creset %Cgreen(%cr) <%an>%Creset' --abbrev-commit --date=relative
+        stashp = stash list --pretty=format:'%C(red)%h%C(reset) - %C(dim yellow)(%C(bold magenta)%gd%C(dim yellow))%C(reset) <(70,trunc)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)'
+" >> ${git_file}
+
